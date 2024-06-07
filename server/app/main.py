@@ -1,10 +1,9 @@
 import os
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI
+
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.book_route import book_router
-
-
 from app.infrastructre.db.database import create_tables
 
 if os.getenv("ENV") == "local":
