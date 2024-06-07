@@ -1,5 +1,6 @@
 from pydantic import BaseModel, constr
 
+
 class BookCreate(BaseModel):
     title: constr(min_length=4)
 

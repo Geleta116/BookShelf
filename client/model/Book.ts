@@ -1,6 +1,5 @@
 interface Book {
-    id: string;
-    title: string;
-    status: string;
-  }
-  
+  id: string;
+  title: string;
+  status: string;
+}

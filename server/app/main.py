@@ -12,7 +12,7 @@ if os.getenv("ENV") == "local":
 else:
     load_dotenv(dotenv_path=".env.docker")
 
-app = FastAPI() 
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,

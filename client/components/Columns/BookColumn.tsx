@@ -1,4 +1,3 @@
-
 import BookCard from "../Card/BookCard";
 interface BookColumnProps {
   books: Book[];

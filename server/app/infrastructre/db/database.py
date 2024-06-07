@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class PgDatabase(ABC):
     def __init__(self) -> None:
         super().__init__()
@@ -15,7 +16,7 @@ class PgDatabase(ABC):
             port=os.getenv("DB_PORT"),
             user=os.getenv("DB_USER"),
             password=os.getenv("DB_PASSWORD"),
-            database=os.getenv("DB_NAME")
+            database=os.getenv("DB_NAME"),
         )
 
     def __enter__(self):
@@ -29,18 +30,22 @@ class PgDatabase(ABC):
         if self.connection:
             self.connection.close()
 
-    
+
 bookTable = "bookS"
+
 
 def create_tables():
     with PgDatabase() as db:
-        db.cursor.execute(f"""
+        db.cursor.execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
+
+        db.cursor.execute(
+            f"""
         CREATE TABLE IF NOT EXISTS {bookTable} (
-            id SERIAL PRIMARY KEY,
+             id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
         title VARCHAR(255) NOT NULL,
         status VARCHAR(50) NOT NULL
         );
-        """)
+        """
+        )
         db.connection.commit()
         print("Tables are created or already exist...")
-

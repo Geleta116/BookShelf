@@ -53,17 +53,16 @@ export const getAllBooksApi = async () => {
   return books;
 };
 
-
-export const deleteBookApi = async(bookId: string) => {
-   const response =  await fetch(`${api}/${bookId}`, {
-    method: 'DELETE',
+export const deleteBookApi = async (bookId: string) => {
+  const response = await fetch(`${api}/${bookId}`, {
+    method: "DELETE",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
   });
 
-  if (!response.ok){
-    throw new Error("Failed to Delete Book")
+  if (!response.ok) {
+    throw new Error("Failed to Delete Book");
   }
- return;
-}
+  return;
+};

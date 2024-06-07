@@ -1,11 +1,10 @@
-"use client"
+"use client";
 import React from "react";
 import useBookStore from "@/store/book.store";
 import { Button } from "../ui/button";
 import { BookSchema } from "@/services/schema/bookSchema";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast"
-
+import { ToastAction } from "@/components/ui/toast";
 
 interface AddBookButtonProps {
   bookTitle: string;
@@ -20,11 +19,9 @@ const AddBookButton: React.FC<AddBookButtonProps> = ({ bookTitle }) => {
       const output = BookSchema.parse({ title: bookTitle });
       await addBook(bookTitle);
     } catch (e) {
-      
       toast({
         variant: "destructive",
-        title:"please make sure you entered a valid book name",
-       
+        title: "please make sure you entered a valid book name",
       });
     }
   };

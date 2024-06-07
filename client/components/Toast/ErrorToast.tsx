@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
 
 interface ToastDestructiveProps {
   errorMessage: any;
@@ -15,7 +14,6 @@ export const ToastDestructive = ({ errorMessage }: ToastDestructiveProps) => {
       toast({
         variant: "destructive",
         title: errorMessage,
-       
       });
     }
   }, [errorMessage, toast]);

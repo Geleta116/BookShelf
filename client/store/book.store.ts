@@ -36,7 +36,6 @@ const useBookStore = create<BookStore>((set) => ({
         ),
       }));
     } catch (error: any) {
-      
       set((state) => ({ error: error.message }));
     }
   },

@@ -1,5 +1,5 @@
-import z from 'zod'
+import z from "zod";
 
 export const BookSchema = z.object({
-  title: z.string().min(4)
-})
+  title: z.string().min(4),
+});
