@@ -1,0 +1,33 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore npm debug logs
+npm-debug.log
+
+# Ignore Angular build artifacts
+dist
+
+# Ignore any local environment configurations
+.env
+
+# Ignore any temporary files
+tmp
+
+# Ignore Docker related files
+.dockerignore
+.dockerignore_template
+
+# Ignore version control related files and directories
+.git
+.gitignore
+
+# Ignore any text editor specific files
+.vscode
+.idea
+
+# Ignore any build artifacts and cache
+*.log
+*.pid
+*.lock
+*.lck
+*.sock
