@@ -5,17 +5,22 @@ from app.domain.book.entities.bookEntity import Book
 from app.domain.book.schemas.bookSchema import BookCreate, BookUpdate
 import psycopg2
 
+in_docker = os.getenv("IN_DOCKER", "false").lower() == "true"
 
-load_dotenv()
+db_name = os.getenv("DB_NAME", "postgres")
+db_user = os.getenv("DB_USER", "postgres")
+db_password = os.getenv("DB_PASSWORD", "postgres")
+db_host = os.getenv("DB_HOST", "localhost") if not in_docker else "DATABASE"
+db_port = os.getenv("DB_PORT", "5432")
 
 class BookRepository:
     def __init__(self):
         self.conn = psycopg2.connect(
-            dbname=os.getenv("DB_NAME"),
-            user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD"),
-            host=os.getenv("DB_HOST", "localhost"),  
-            port="5432"
+            dbname=db_name,
+            user=db_user,
+            password=db_password,
+            host=db_host,
+            port=db_port
         )
         self.conn.autocommit = True
         self.cur = self.conn.cursor()
