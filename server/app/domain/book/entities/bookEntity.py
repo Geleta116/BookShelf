@@ -5,6 +5,6 @@ from app.domain.book.valueObjects.bookStatus import BookStatus
 
 @dataclass
 class Book:
-    id: UUID
+    id: int
     title: str
     status: BookStatus

@@ -29,3 +29,11 @@ def test_delete_book():
     delete_response = client.delete(f"/books/{book_id}")
 
     assert delete_response.status_code == 204
+
+def test_update_book_status():
+    
+    create_response = client.post("/books", json={"title": "Sample Book two"})
+    book_id = create_response.json()["id"]
+    update_response = client.put(f"/books/{book_id}", json={"status": "completed"})
+    
+    assert update_response.status_code == 200

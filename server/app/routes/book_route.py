@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter, HTTPException, status
 from app.domain.book.entities.bookEntity import Book
-from app.infrastructre.bookRepository import BookRepository
-from app.domain.book.schemas.bookSchema import BookCreate, BookUpdate
+from app.infrastructre.repository.bookRepository import BookRepository
+from app.domain.book.dtos.bookDTO import BookCreate, BookUpdate
 
 
 book_router = APIRouter()
@@ -33,14 +33,11 @@ def get_book(book_id: int):
     "/books/{book_id}", response_model=Book, status_code=status.HTTP_200_OK
 )
 def update_book(book_id: int, book: BookUpdate):
-    try:
-        updatedBook = repo.update_book(book_id, book)
-        if not update_book:
-            raise HTTPException(status_code=404, detail="Book not found")
-        return updatedBook
-    except Exception as e:
-        raise HTTPException(status_code=422, detail=str(e))
-    
+    updatedBook = repo.update_book(book_id, book)
+    if not updatedBook:
+        raise HTTPException(status_code=404, detail="Book not found")
+
+    return updatedBook
 
 
 @book_router.delete("/books/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
