@@ -50,13 +50,13 @@ class BookRepository:
         else:
             return None
 
-    def update_book(self, book_id: int, book: BookUpdate) -> Book:
+    def update_book(self, book_id: int, bookStatus: BookUpdate) -> Book:
         book_to_update = self.get_book_by_id(book_id)
         if not book_to_update:
             return None
         self.cur.execute(
             "UPDATE books SET status = %s WHERE id = %s RETURNING id, title, status",
-            (book.status, book_id)
+            (bookStatus.status.value, book_id)
         )
         id, title, status = self.cur.fetchone()
         return Book(id=id, title=title, status=status)

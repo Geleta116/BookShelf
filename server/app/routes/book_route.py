@@ -33,10 +33,14 @@ def get_book(book_id: int):
     "/books/{book_id}", response_model=Book, status_code=status.HTTP_200_OK
 )
 def update_book(book_id: int, book: BookUpdate):
-    updatedBook = repo.update_book(book_id, book)
-    if not update_book:
-        raise HTTPException(status_code=404, detail="Book not found")
-    return updatedBook
+    try:
+        updatedBook = repo.update_book(book_id, book)
+        if not update_book:
+            raise HTTPException(status_code=404, detail="Book not found")
+        return updatedBook
+    except Exception as e:
+        raise HTTPException(status_code=422, detail=str(e))
+    
 
 
 @book_router.delete("/books/{book_id}", status_code=status.HTTP_204_NO_CONTENT)

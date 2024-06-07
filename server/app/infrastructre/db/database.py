@@ -40,10 +40,10 @@ def create_tables():
 
         db.cursor.execute(
             f"""
-        CREATE TABLE IF NOT EXISTS {bookTable} (
-             id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-        title VARCHAR(255) NOT NULL,
-        status VARCHAR(50) NOT NULL
+                CREATE TABLE IF NOT EXISTS {bookTable} (
+                id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+                title VARCHAR(255) NOT NULL,
+                status VARCHAR(50) NOT NULL
         );
         """
         )
